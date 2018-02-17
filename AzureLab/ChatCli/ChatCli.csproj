@@ -71,6 +71,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatClientType.cs" />
+    <Compile Include="ChatDemoInteractions.cs" />
+    <Compile Include="ChatUserInteractions.cs" />
+    <Compile Include="ChatClientConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
