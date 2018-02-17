@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ChatWpf.Connected_Services.ChatService;
@@ -20,6 +21,8 @@ namespace ChatWpf.ViewModels
             this.SendNewMessageCommand = new RelayCommand(async () => await this.SendNewMessage());
             this.ClearMessagesCommand = new RelayCommand(async () => await this.ClearMessages());
             this._newMessage = new ChatMessage {Message = "New message...", Sender = this.Hostname};
+
+            Task.Run(() => this.PeriodicRefreshAsync(new TimeSpan(0, 0, 10), CancellationToken.None)).ConfigureAwait(false);
         }
 
         public IEnumerable<ChatMessage> ChatMessages
@@ -71,6 +74,15 @@ namespace ChatWpf.ViewModels
         {
             await new ChatServiceClient().ClearMessagesAsync();
             await this.RefreshChatMessages();
+        }
+
+        private async Task PeriodicRefreshAsync(TimeSpan interval, CancellationToken cancellationToken)
+        {
+            while (true)
+            {
+                await this.RefreshChatMessages();
+                await Task.Delay(interval, cancellationToken);
+            }
         }
     }
 }
