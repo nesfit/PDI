@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChatCli
+namespace ChatCli.Extensions
 {
     public static class StringExtensions
     {

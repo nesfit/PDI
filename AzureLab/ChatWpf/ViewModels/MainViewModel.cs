@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.Networking.Connectivity;
-using ChatUWPApp.Connected_Services.ChatApi;
+using ChatWpf.Connected_Services.ChatService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-namespace ChatUWPApp.ViewModels
+namespace ChatWpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         private IEnumerable<ChatMessage> _chatMessages = new List<ChatMessage>();
-        private string _hostname;
         private ChatMessage _newMessage;
 
         public MainViewModel()
@@ -21,6 +21,8 @@ namespace ChatUWPApp.ViewModels
             this.SendNewMessageCommand = new RelayCommand(async () => await this.SendNewMessage());
             this.ClearMessagesCommand = new RelayCommand(async () => await this.ClearMessages());
             this._newMessage = new ChatMessage {Message = "New message...", Sender = this.Hostname};
+
+            Task.Run(() => this.PeriodicRefreshAsync(new TimeSpan(0, 0, 10), CancellationToken.None)).ConfigureAwait(false);
         }
 
         public IEnumerable<ChatMessage> ChatMessages
@@ -34,7 +36,7 @@ namespace ChatUWPApp.ViewModels
             }
         }
 
-        private string Hostname => this._hostname ?? (this._hostname = this.ComputerName());
+        private string Hostname => Environment.MachineName;
 
         public ICommand RefreshCommand => new RelayCommand(async () => await this.RefreshChatMessages());
 
@@ -52,34 +54,48 @@ namespace ChatUWPApp.ViewModels
         public ICommand ClearMessagesCommand { get; }
 
 
-        private string ComputerName()
-        {
-            var hostNames = NetworkInformation.GetHostNames();
-            var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
-            string computerName = localName?.DisplayName.Replace(".local", "") ?? "unknown";
-            return computerName;
-        }
-
         public async Task RefreshChatMessages()
         {
-            ChatServiceClient chatApi = new ChatServiceClient();
-            ObservableCollection<ChatMessage> chatMessages = await chatApi.GetAllMessagesAsync();
-            IOrderedEnumerable<ChatMessage> orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
-            this.ChatMessages = new List<ChatMessage>(orderedChatMessages);
+            using (var chatApi = new ChatServiceClient())
+            {
+                //TODO
+                // Replace Task.FromResult(new List<ChatMessage>() with valid call
+                var chatMessages = new ObservableCollection<ChatMessage>(await Task.FromResult(new List<ChatMessage>()));
+                var orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
+                this.ChatMessages = new List<ChatMessage>(orderedChatMessages);
+            }
         }
 
         public async Task SendNewMessage()
         {
-            ChatServiceClient chatApi = new ChatServiceClient();
-            await chatApi.SendMessageAsync(this.NewMessage);
-            this.NewMessage = new ChatMessage {Sender = this.Hostname};
+            using (var chatApi = new ChatServiceClient())
+            {
+                // TODO
+                // Replace Task.CompletedTask with valid call
+                await Task.CompletedTask;
+            }
+            this.NewMessage = new ChatMessage { Sender = this.Hostname };
             await this.RefreshChatMessages();
         }
 
         private async Task ClearMessages()
         {
-            await new ChatServiceClient().ClearMessagesAsync();
+            using (var chatApi = new ChatServiceClient())
+            {
+                // TODO
+                // Replace Task.CompletedTask with valid call
+                await Task.CompletedTask;
+            }
             await this.RefreshChatMessages();
+        }
+
+        private async Task PeriodicRefreshAsync(TimeSpan interval, CancellationToken cancellationToken)
+        {
+            while (true)
+            {
+                await this.RefreshChatMessages();
+                await Task.Delay(interval, cancellationToken);
+            }
         }
     }
 }

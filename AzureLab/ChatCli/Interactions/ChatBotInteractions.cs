@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using ChatCli.Extensions;
 using ChatService.Interfaces;
 using ChatService.Models;
 
-namespace ChatCli
+namespace ChatCli.Interactions
 {
     internal class ChatBotInteractions
     {
@@ -41,7 +42,7 @@ namespace ChatCli
         private static IEnumerable<ChatMessage> GetAllNewMessages(IChatService serviceClient,
             DateTime lastMessageTimestamp)
         {
-            return ChatClientConsole.GetAllMessages(serviceClient)
+            return ClientConsole.GetAllMessages(serviceClient)
                 .SkipWhile(message => message.TimeStamp <= lastMessageTimestamp);
         }
 
@@ -65,7 +66,7 @@ namespace ChatCli
         private static void SendMessage(IChatService serviceClient, string sendMessage)
         {
             PrintSendMessage(sendMessage);
-            ChatClientConsole.SendMessage(serviceClient, sendMessage);
+            ClientConsole.SendMessage(serviceClient, sendMessage);
         }
 
         private static void PrintSendMessage(string sendMessage)

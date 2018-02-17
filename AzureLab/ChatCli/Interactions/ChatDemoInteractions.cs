@@ -1,6 +1,6 @@
 ﻿using ChatService.Interfaces;
 
-namespace ChatCli
+namespace ChatCli.Interactions
 {
     internal class ChatDemoInteractions
     {
@@ -12,8 +12,8 @@ namespace ChatCli
                     case "q":
                         return;
                     default:
-                        ChatClientConsole.SendMessage(serviceClient, "Message test");
-                        ChatClientConsole.PrintAllMessages(serviceClient);
+                        ClientConsole.SendMessage(serviceClient, "Message test");
+                        ClientConsole.PrintAllMessages(serviceClient);
                         break;
                 }
         }
