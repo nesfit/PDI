@@ -56,23 +56,32 @@ namespace ChatWpf.ViewModels
 
         public async Task RefreshChatMessages()
         {
-            var chatApi = new ChatServiceClient();
-            var chatMessages = new ObservableCollection<ChatMessage>(await chatApi.GetAllMessagesAsync());
-            var orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
-            this.ChatMessages = new List<ChatMessage>(orderedChatMessages);
+            using (var chatApi = new ChatServiceClient())
+            {
+                var chatMessages = new ObservableCollection<ChatMessage>(await chatApi.GetAllMessagesAsync());
+                var orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
+                this.ChatMessages = new List<ChatMessage>(orderedChatMessages);
+            }
+           
         }
 
         public async Task SendNewMessage()
         {
-            var chatApi = new ChatServiceClient();
-            await chatApi.SendMessageAsync(this.NewMessage);
+            using (var chatApi = new ChatServiceClient())
+            {
+                await chatApi.SendMessageAsync(this.NewMessage);
+            }
             this.NewMessage = new ChatMessage {Sender = this.Hostname};
             await this.RefreshChatMessages();
         }
 
         private async Task ClearMessages()
         {
-            await new ChatServiceClient().ClearMessagesAsync();
+            using (var chatApi = new ChatServiceClient())
+            {
+                await chatApi.ClearMessagesAsync();
+            }
+           
             await this.RefreshChatMessages();
         }
 
