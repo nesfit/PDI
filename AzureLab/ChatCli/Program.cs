@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.ServiceModel;
+using ChatCli.Interactions;
 using ChatService.Interfaces;
 using ChatService.Models;
 

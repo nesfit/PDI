@@ -3,9 +3,9 @@ using System.Linq;
 using ChatService.Interfaces;
 using ChatService.Models;
 
-namespace ChatCli
+namespace ChatCli.Interactions
 {
-    internal class ChatClientConsole
+    internal class ClientConsole
     {
         public static string ReadMessageFromConsole()
         {

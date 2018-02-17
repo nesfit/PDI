@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using ChatService.Interfaces;
-using ChatService.Models;
+﻿using ChatService.Interfaces;
 
-namespace ChatCli
+namespace ChatCli.Interactions
 {
     internal class ChatUserInteractions
     {
@@ -20,10 +17,10 @@ namespace ChatCli
                     case "exit":
                         return;
                     default:
-                        ChatClientConsole.ClearConsole();
-                        ChatClientConsole.SendMessage(serviceClient, msg);
-                        ChatClientConsole.PrintAllMessages(serviceClient);
-                        msg = ChatClientConsole.ReadMessageFromConsole();
+                        ClientConsole.ClearConsole();
+                        ClientConsole.SendMessage(serviceClient, msg);
+                        ClientConsole.PrintAllMessages(serviceClient);
+                        msg = ClientConsole.ReadMessageFromConsole();
                         break;
                 }
             }
