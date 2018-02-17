@@ -1,19 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.Networking.Connectivity;
-using ChatUWPApp.Connected_Services.ChatApi;
+using ChatWpf.Connected_Services.ChatService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-namespace ChatUWPApp.ViewModels
+namespace ChatWpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         private IEnumerable<ChatMessage> _chatMessages = new List<ChatMessage>();
-        private string _hostname;
         private ChatMessage _newMessage;
 
         public MainViewModel()
@@ -34,7 +33,7 @@ namespace ChatUWPApp.ViewModels
             }
         }
 
-        private string Hostname => this._hostname ?? (this._hostname = this.ComputerName());
+        private string Hostname => Environment.MachineName;
 
         public ICommand RefreshCommand => new RelayCommand(async () => await this.RefreshChatMessages());
 
@@ -52,18 +51,10 @@ namespace ChatUWPApp.ViewModels
         public ICommand ClearMessagesCommand { get; }
 
 
-        private string ComputerName()
-        {
-            var hostNames = NetworkInformation.GetHostNames();
-            var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
-            string computerName = localName?.DisplayName.Replace(".local", "") ?? "unknown";
-            return computerName;
-        }
-
         public async Task RefreshChatMessages()
         {
             ChatServiceClient chatApi = new ChatServiceClient();
-            ObservableCollection<ChatMessage> chatMessages = await chatApi.GetAllMessagesAsync();
+            ObservableCollection<ChatMessage> chatMessages = new ObservableCollection<ChatMessage>(await chatApi.GetAllMessagesAsync());
             IOrderedEnumerable<ChatMessage> orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
             this.ChatMessages = new List<ChatMessage>(orderedChatMessages);
         }
