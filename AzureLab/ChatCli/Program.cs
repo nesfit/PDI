@@ -15,7 +15,7 @@ namespace ChatCli
 
             Uri uri = new Uri(string.Format("http://azurelabfit.azurewebsites.net/ChatApi.svc", Environment.MachineName));
 
-            RunChatClient(uri, ChatClientType.User);
+            RunChatClient(uri, ChatClientType.Demo);
 
             WaitForPressedKey();
         }
@@ -32,6 +32,7 @@ namespace ChatCli
                         ChatUserInteractions.RunEventLoop(serviceClient);
                         break;
                     case ChatClientType.Bot:
+                        ChatBotInteractions.RunEventLoop(serviceClient);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);

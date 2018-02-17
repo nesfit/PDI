@@ -71,12 +71,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatBotInteractions.cs" />
     <Compile Include="ChatClientType.cs" />
     <Compile Include="ChatDemoInteractions.cs" />
     <Compile Include="ChatUserInteractions.cs" />
     <Compile Include="ChatClientConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

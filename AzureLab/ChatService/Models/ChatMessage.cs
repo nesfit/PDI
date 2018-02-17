@@ -14,5 +14,10 @@ namespace ChatService.Models
 
         [DataMember]
         public string Sender { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(this.TimeStamp)}: {this.TimeStamp}, {nameof(this.Sender)}: {this.Sender}, {nameof(this.Message)}: {this.Message}";
+        }
     }
 }
