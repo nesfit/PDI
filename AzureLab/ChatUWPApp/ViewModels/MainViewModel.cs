@@ -56,21 +56,21 @@ namespace ChatUWPApp.ViewModels
         {
             var hostNames = NetworkInformation.GetHostNames();
             var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
-            var computerName = localName?.DisplayName.Replace(".local", "") ?? "unknown";
+            string computerName = localName?.DisplayName.Replace(".local", "") ?? "unknown";
             return computerName;
         }
 
         public async Task RefreshChatMessages()
         {
-            var chatApi = new ChatServiceClient();
-            var chatMessages = await chatApi.GetAllMessagesAsync();
-            var orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
+            ChatServiceClient chatApi = new ChatServiceClient();
+            ObservableCollection<ChatMessage> chatMessages = await chatApi.GetAllMessagesAsync();
+            IOrderedEnumerable<ChatMessage> orderedChatMessages = chatMessages.OrderByDescending(m => m.TimeStamp);
             this.ChatMessages = new List<ChatMessage>(orderedChatMessages);
         }
 
         public async Task SendNewMessage()
         {
-            var chatApi = new ChatServiceClient();
+            ChatServiceClient chatApi = new ChatServiceClient();
             await chatApi.SendMessageAsync(this.NewMessage);
             this.NewMessage = new ChatMessage {Sender = this.Hostname};
             await this.RefreshChatMessages();

@@ -90,16 +90,16 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="Connected Services\ChatApi\ChatApi.xsd">
+    <None Include="Connected Services\ChatApi\ChatApi3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ChatApi\ChatApi1.xsd">
+    <None Include="Connected Services\ChatApi\ChatApi31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ChatApi\ChatApi2.xsd">
+    <None Include="Connected Services\ChatApi\ChatApi32.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ChatApi\ChatService.wsdl" />
+    <None Include="Connected Services\ChatApi\ChatService1.wsdl" />
     <None Include="Connected Services\ChatApi\ChatUWPApp.ChatApi.ChatMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -129,13 +129,13 @@
     <None Include="ChatUWPApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ChatApi\ChatApi.disco" />
     <None Include="Connected Services\ChatApi\configuration91.svcinfo" />
     <None Include="Connected Services\ChatApi\configuration.svcinfo" />
     <None Include="Connected Services\ChatApi\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ChatApi\ChatApi1.disco" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

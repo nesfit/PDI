@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://azurelabchatapp.azurewebsites.net/ChatApi.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://azurelabfit.azurewebsites.net/ChatApi.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ChatApi.disco" MetadataType="Disco" ID="4b2d5f07-72b3-48df-8583-64a017f7ec0d" SourceId="1" SourceUrl="http://azurelabchatapp.azurewebsites.net/ChatApi.svc?disco" />
-    <MetadataFile FileName="ChatApi.xsd" MetadataType="Schema" ID="46045d38-34df-43fd-a771-87c8ac8e938c" SourceId="1" SourceUrl="http://azurelabchatapp.azurewebsites.net/ChatApi.svc?xsd=xsd2" />
-    <MetadataFile FileName="ChatApi1.xsd" MetadataType="Schema" ID="ed13c7c3-1024-4a89-835c-b63fa3613627" SourceId="1" SourceUrl="http://azurelabchatapp.azurewebsites.net/ChatApi.svc?xsd=xsd0" />
-    <MetadataFile FileName="ChatService.wsdl" MetadataType="Wsdl" ID="23590143-2acb-44f8-a034-b195256c2661" SourceId="1" SourceUrl="http://azurelabchatapp.azurewebsites.net/ChatApi.svc?wsdl" />
-    <MetadataFile FileName="ChatApi2.xsd" MetadataType="Schema" ID="d891d2d8-be6f-4059-83ec-cef57760cded" SourceId="1" SourceUrl="http://azurelabchatapp.azurewebsites.net/ChatApi.svc?xsd=xsd1" />
+    <MetadataFile FileName="ChatService1.wsdl" MetadataType="Wsdl" ID="d728d10f-023b-4488-8c61-981c81d8b528" SourceId="1" SourceUrl="https://azurelabfit.azurewebsites.net/ChatApi.svc?wsdl" />
+    <MetadataFile FileName="ChatApi3.xsd" MetadataType="Schema" ID="cb3b98ca-f77e-4328-9ac7-a3a044658420" SourceId="1" SourceUrl="https://azurelabfit.azurewebsites.net/ChatApi.svc?xsd=xsd2" />
+    <MetadataFile FileName="ChatApi31.xsd" MetadataType="Schema" ID="d2bbb1d8-4294-4bfa-addb-0d0ac13b5168" SourceId="1" SourceUrl="https://azurelabfit.azurewebsites.net/ChatApi.svc?xsd=xsd1" />
+    <MetadataFile FileName="ChatApi32.xsd" MetadataType="Schema" ID="19f92886-2ec9-464c-ae2c-7b9dfb759020" SourceId="1" SourceUrl="https://azurelabfit.azurewebsites.net/ChatApi.svc?xsd=xsd0" />
+    <MetadataFile FileName="ChatApi1.disco" MetadataType="Disco" ID="e11bd885-c133-41dd-adf6-f228c441427a" SourceId="1" SourceUrl="https://azurelabfit.azurewebsites.net/ChatApi.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
