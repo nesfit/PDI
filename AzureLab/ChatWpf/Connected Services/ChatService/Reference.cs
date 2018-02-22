@@ -8,26 +8,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Runtime.Serialization;
-
-namespace ChatWpf.Connected_Services.ChatService {
+namespace ChatWpf.ChatService {
+    using System.Runtime.Serialization;
+    using System;
+    
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [DataContract(Name="ChatMessage", Namespace="http://schemas.datacontract.org/2004/07/ChatService.Models")]
-    [Serializable()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChatMessage", Namespace="http://schemas.datacontract.org/2004/07/ChatService.Models")]
+    [System.SerializableAttribute()]
     public partial class ChatMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [NonSerialized()]
+        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [OptionalField()]
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MessageField;
         
-        [OptionalField()]
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SenderField;
         
-        [OptionalField()]
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeStampField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -40,7 +41,7 @@ namespace ChatWpf.Connected_Services.ChatService {
             }
         }
         
-        [DataMember()]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Message {
             get {
                 return this.MessageField;
@@ -53,7 +54,7 @@ namespace ChatWpf.Connected_Services.ChatService {
             }
         }
         
-        [DataMember()]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Sender {
             get {
                 return this.SenderField;
@@ -66,7 +67,7 @@ namespace ChatWpf.Connected_Services.ChatService {
             }
         }
         
-        [DataMember()]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime TimeStamp {
             get {
                 return this.TimeStampField;
@@ -94,10 +95,10 @@ namespace ChatWpf.Connected_Services.ChatService {
     public interface IChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        void SendMessage(ChatMessage chatMessage);
+        void SendMessage(ChatWpf.ChatService.ChatMessage chatMessage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        System.Threading.Tasks.Task SendMessageAsync(ChatMessage chatMessage);
+        System.Threading.Tasks.Task SendMessageAsync(ChatWpf.ChatService.ChatMessage chatMessage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ClearMessages", ReplyAction="http://tempuri.org/IChatService/ClearMessagesResponse")]
         void ClearMessages();
@@ -106,19 +107,19 @@ namespace ChatWpf.Connected_Services.ChatService {
         System.Threading.Tasks.Task ClearMessagesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetAllMessages", ReplyAction="http://tempuri.org/IChatService/GetAllMessagesResponse")]
-        ChatMessage[] GetAllMessages();
+        ChatWpf.ChatService.ChatMessage[] GetAllMessages();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetAllMessages", ReplyAction="http://tempuri.org/IChatService/GetAllMessagesResponse")]
-        System.Threading.Tasks.Task<ChatMessage[]> GetAllMessagesAsync();
+        System.Threading.Tasks.Task<ChatWpf.ChatService.ChatMessage[]> GetAllMessagesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IChatServiceChannel : IChatService, System.ServiceModel.IClientChannel {
+    public interface IChatServiceChannel : ChatWpf.ChatService.IChatService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ChatServiceClient : System.ServiceModel.ClientBase<IChatService>, IChatService {
+    public partial class ChatServiceClient : System.ServiceModel.ClientBase<ChatWpf.ChatService.IChatService>, ChatWpf.ChatService.IChatService {
         
         public ChatServiceClient() {
         }
@@ -139,11 +140,11 @@ namespace ChatWpf.Connected_Services.ChatService {
                 base(binding, remoteAddress) {
         }
         
-        public void SendMessage(ChatMessage chatMessage) {
+        public void SendMessage(ChatWpf.ChatService.ChatMessage chatMessage) {
             base.Channel.SendMessage(chatMessage);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(ChatMessage chatMessage) {
+        public System.Threading.Tasks.Task SendMessageAsync(ChatWpf.ChatService.ChatMessage chatMessage) {
             return base.Channel.SendMessageAsync(chatMessage);
         }
         
@@ -155,11 +156,11 @@ namespace ChatWpf.Connected_Services.ChatService {
             return base.Channel.ClearMessagesAsync();
         }
         
-        public ChatMessage[] GetAllMessages() {
+        public ChatWpf.ChatService.ChatMessage[] GetAllMessages() {
             return base.Channel.GetAllMessages();
         }
         
-        public System.Threading.Tasks.Task<ChatMessage[]> GetAllMessagesAsync() {
+        public System.Threading.Tasks.Task<ChatWpf.ChatService.ChatMessage[]> GetAllMessagesAsync() {
             return base.Channel.GetAllMessagesAsync();
         }
     }
