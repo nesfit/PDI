@@ -16,7 +16,7 @@ namespace ChatCli
 
             Uri uri = new Uri(string.Format("http://azurelabfit.azurewebsites.net/ChatApi.svc", Environment.MachineName));
 
-            RunChatClient(uri, ChatClientType.Demo);
+            RunChatClient(uri, ChatClientType.Bot);
 
             WaitForPressedKey();
         }

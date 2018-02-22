@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ChatWpf.Connected_Services.ChatService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using ChatWpf.ChatService;
 
 namespace ChatWpf.ViewModels
 {
